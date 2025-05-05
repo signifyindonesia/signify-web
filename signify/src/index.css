@@ -1,5 +1,10 @@
-/* Import Tailwind CSS */
-@import "tailwindcss";
+/* Import global custom styles */
+@import "./styles/global.css";
+
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Reset dasar */
 * {
@@ -7,6 +12,3 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-/* Import global custom styles */
-@import "./styles/global.css";

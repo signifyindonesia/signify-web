@@ -1,9 +1,9 @@
 :root {
-  --color-primary: #3C82F6;
-  --color-secondary: #1F2937;
-  --color-accent: #EAB308;
+  --color-primary: #3B82F6;
+  --color-secondary: #BFDBFE;
+  --color-accent: #FDBA74;
   --color-background: #F9FAFB;
-  --color-text: #111827;
+  --color-text: #333333;
 
   --font-body: "Nunito", sans-serif;
   --font-heading: "Roboto", sans-serif;
