@@ -11,7 +11,6 @@ function App() {
         <AppRoutes />
       </main>
       <Footer />
-      <h1 className='text-3xl font-bold underline'>TEST Tailwind</h1>
     </div>
   );
 }
