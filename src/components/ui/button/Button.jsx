@@ -12,21 +12,32 @@ const variantClasses = {
     blue: "bg-blue-600 text-white hover:bg-blue-700",
     red: "bg-red-600 text-white hover:bg-red-700",
     gray: "bg-gray-600 text-white hover:bg-gray-700",
+    accent:
+      "bg-[var(--color-accent)] text-[var(--color-text)] hover:brightness-110",
+    white: "bg-white text-[var(--color-text)] hover:bg-gray-100",
   },
   outline: {
     blue: "border border-blue-600 text-blue-600 hover:bg-blue-50",
     red: "border border-red-600 text-red-600 hover:bg-red-50",
     gray: "border border-gray-600 text-gray-600 hover:bg-gray-50",
+    accent:
+      "border border-[var(--color-accent)] text-[var(--color-accent)] hover:bg-[var(--color-accent)]/10 hover:brightness-105",
+    white: "border border-white text-white hover:bg-white/10",
   },
   ghost: {
     blue: "text-blue-600 hover:bg-blue-100",
     red: "text-red-600 hover:bg-red-100",
     gray: "text-gray-600 hover:bg-gray-100",
+    accent: "text-[var(--color-accent)] hover:bg-[var(--color-accent)]/10",
+    white: "text-white hover:bg-white/10",
   },
   link: {
     blue: "text-blue-600 underline hover:text-blue-800",
     red: "text-red-600 underline hover:text-red-800",
     gray: "text-gray-600 underline hover:text-gray-800",
+    accent: "text-[var(--color-accent)] underline hover:opacity-80",
+    white: "text-white underline hover:opacity-80",
+    text: "text-[var(--color-text)] underline hover:opacity-80",
   },
 };
 
@@ -52,8 +63,10 @@ const Button = forwardRef(
   ) => {
     const Component = as === "a" ? "a" : "button";
 
-    const baseStyles =
-      "inline-flex items-center justify-center font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2";
+    const baseStyles = clsx(
+      "inline-flex items-center justify-center font-medium transition focus:outline-none",
+      variant !== "link" && "focus:ring-2 focus:ring-offset-2"
+    );
 
     const variantStyle = variantClasses[variant]?.[color] || "";
 
