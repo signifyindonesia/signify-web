@@ -53,7 +53,7 @@ export default function Navbar() {
             <li><Link to="/" className="text-white hover:text-blue-600 transition-colors">Beranda</Link></li>
             <li><Link to="/about" className="text-white hover:text-blue-600 transition-colors">Tentang</Link></li>
             <li><Link to="/academy" className="text-white hover:text-blue-600 transition-colors">Akademi</Link></li>
-            <li><Link to="/translator" className="text-white hover:text-blue-600 transition-colors">Penerjemah</Link></li>
+            <li><Link to="/translation" className="text-white hover:text-blue-600 transition-colors">Penerjemah</Link></li>
             <li><Link to="/docs" className="text-white hover:text-blue-600 transition-colors">Dokumentasi API</Link></li>
           </ul>
 

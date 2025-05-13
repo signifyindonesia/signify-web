@@ -5,6 +5,7 @@ import Register from "../pages/register/Register";
 import About from "../pages/about/About";
 import Docs from "../pages/docs/Docs";
 import NotFound from "../pages/404/NotFound";
+import Translation from "../pages/translation/Translation";
 
 export default function AppRoutes() {
   return (
@@ -13,6 +14,7 @@ export default function AppRoutes() {
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/about' element={<About />} />
+      <Route path='/translation' element={<Translation />} />
       <Route path='/docs' element={<Docs />} />
       <Route path='*' element={<NotFound />} />
     </Routes>

@@ -40,7 +40,7 @@ export default function Footer() {
               <li><a href="/home" className="text-blue-100 hover:text-white transition-colors">Beranda</a></li>
               <li><a href="/about" className="text-blue-100 hover:text-white transition-colors">Tentang</a></li>
               <li><a href="/academy" className="text-blue-100 hover:text-white transition-colors">Akademi</a></li>
-              <li><a href="/home" className="text-blue-100 hover:text-white transition-colors">Penerjemah</a></li>
+              <li><a href="/translation" className="text-blue-100 hover:text-white transition-colors">Penerjemah</a></li>
               <li><a href="/docs" className="text-blue-100 hover:text-white transition-colors">Dokumentasi API</a></li>
             </ul>
           </div>
