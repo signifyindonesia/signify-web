@@ -12,7 +12,7 @@ export default function Navbar() {
     <nav className="bg-gradient-to-r from-blue-500 to-blue-200 shadow-md px-4 md:px-6 py-4">
       <div className="flex items-center justify-between">
         {/* Logo/Brand */}
-        <h1 className="text-xl md:text-2xl font-bold text-white">Signify</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-white"><Link to="/">Signify</Link></h1>
 
         {/* Hamburger Menu for Mobile */}
         <div className="block lg:hidden">
