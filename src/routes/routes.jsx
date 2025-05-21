@@ -6,6 +6,7 @@ import About from "../pages/about/About";
 import Docs from "../pages/docs/Docs";
 import NotFound from "../pages/404/NotFound";
 import Translation from "../pages/translation/Translation";
+import Academy from "../pages/academy/Academy";
 
 export default function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ export default function AppRoutes() {
       <Route path='/translation' element={<Translation />} />
       <Route path='/docs' element={<Docs />} />
       <Route path='*' element={<NotFound />} />
+      <Route path='/academy' element={<Academy />} />
     </Routes>
   );
 }

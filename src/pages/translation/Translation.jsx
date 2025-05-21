@@ -109,14 +109,17 @@ const Translation = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-200 to-white">
+      <header className="w-full py-8 px-6 text-center relative z-10">
+        <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-orange-400 mb-3 drop-shadow-lg">
+          Penerjemah Bahasa Isyarat
+        </h1>
+        <p className="text-blue-900 max-w-lg mx-auto">
+          Izinkan penggunakan kamera untuk menerjemahkan
+        </p>
+      </header>
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl font-bold text-center text-blue-600 mb-2">Penerjemah Bahasa Isyarat</h1>
-          <p className="text-gray-600 text-center mb-8">
-            Unggah foto/video atau gunakan kamera untuk menerjemahkan bahasa isyarat
-          </p>
-
           <div className="bg-white rounded-lg shadow-md p-6">
             <form onSubmit={handleSubmit}>
               {/* Tab Unggah & Kamera */}
