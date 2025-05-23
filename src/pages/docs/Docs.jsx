@@ -8,111 +8,93 @@ const Docs = () => {
     setExpandedEndpoint(expandedEndpoint === endpoint ? null : endpoint);
   };
 
+  const formatJSON = (data) => {
+    return JSON.stringify(data, null, 2)
+      .replace(/"([^"]+)":/g, '$1:')
+      .replace(/"/g, '');
+  };
+
   const apiEndpoints = {
     authentication: [
       {
-        name: 'Login',
+        name: 'Register User',
         method: 'POST',
-        path: '/api/auth/login',
-        description: 'Otentikasi Pengguna, dan Mengambil Access Token',
+        path: '/register',
+        description: 'Endpoint untuk mendaftarkan pengguna baru',
         request: {
           headers: {
             'Content-Type': 'application/json'
           },
           body: {
-            email: 'string',
-            password: 'string'
+            name: 'Yudha',
+            email: 'yudha@example.com',
+            password: 'password123'
           }
         },
         response: {
           success: {
             status: 200,
             body: {
-              token: 'string',
-              user: {
-                id: 'string',
-                name: 'string',
-                email: 'string'
-              }
-            }
-          },
-          error: {
-            status: 401,
-            body: {
-              message: 'Kredensial Tidak Valid'
+              status: 'success',
+              message: 'Registrasi berhasil. Silakan login.'
             }
           }
         }
       },
       {
-        name: 'Register',
+        name: 'Login User',
         method: 'POST',
-        path: '/api/auth/register',
-        description: 'Membuat Akun Baru',
+        path: '/login',
+        description: 'Endpoint untuk login pengguna',
         request: {
           headers: {
             'Content-Type': 'application/json'
           },
           body: {
-            name: 'string',
-            email: 'string',
-            password: 'string'
-          }
-        },
-        response: {
-          success: {
-            status: 201,
-            body: {
-              message: 'Berhasil Mendaftarkan Pengguna',
-              user: {
-                id: 'string',
-                name: 'string',
-                email: 'string'
-              }
-            }
-          },
-          error: {
-            status: 400,
-            body: {
-              message: 'Validasi Error',
-              errors: 'object'
-            }
-          }
-        }
-      }
-    ],
-    stories: [
-      {
-        name: 'Get Stories',
-        method: 'GET',
-        path: '/api/stories',
-        description: 'Mendapatkan Daftar Cerita',
-        request: {
-          headers: {
-            'Authorization': 'Bearer <token>'
-          },
-          query: {
-            page: 'number',
-            limit: 'number',
-            sortBy: 'string'
+            email: 'yudha@example.com',
+            password: 'password123'
           }
         },
         response: {
           success: {
             status: 200,
             body: {
-              data: 'array',
-              pagination: {
-                total: 'number',
-                page: 'number',
-                limit: 'number'
+              status: 'success',
+              message: 'Login berhasil.',
+              data: {
+                token: 'your.jwt.token',
+                user: {
+                  name: 'Yudha',
+                  email: 'yudha@example.com'
+                }
               }
             }
-          },
-          error: {
-            status: 403,
+          }
+        }
+      }
+    ],
+    profile: [
+      {
+        name: 'Get Profile',
+        method: 'GET',
+        path: '/profile',
+        description: 'Endpoint untuk mendapatkan data profil pengguna (Protected)',
+        request: {
+          headers: {
+            'Authorization': 'Bearer <your_token>',
+            'Content-Type': 'application/json'
+          }
+        },
+        response: {
+          success: {
+            status: 200,
             body: {
-              message: 'Forbidden'
+              status: 'success',
+              message: 'Profil pengguna berhasil diambil',
+              data: {
+                name: 'Yudha',
+                email: 'yudha@example.com'
+              }
             }
           }
         }
@@ -120,15 +102,8 @@ const Docs = () => {
     ]
   };
 
-  const formatJSON = (data) => {
-    return JSON.stringify(data, null, 2)
-      .replace(/"([^"]+)":/g, '$1:')
-      .replace(/"/g, '');
-  };
-
   return (
-    
-     <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
       <div className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-center"></div>
@@ -183,8 +158,8 @@ const Docs = () => {
           </svg>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto">
-        <br />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="bg-white shadow rounded-lg overflow-hidden">
           <div className="border-b border-gray-200">
             <nav className="flex -mb-px">
@@ -260,15 +235,6 @@ const Docs = () => {
                           </pre>
                         </div>
                         
-                        {endpoint.request.query && (
-                          <div className="mb-4">
-                            <span className="text-sm font-medium text-gray-700">Query Parameters:</span>
-                            <pre className="mt-1 text-sm text-gray-900 bg-white p-3 rounded overflow-x-auto">
-                              {formatJSON(endpoint.request.query)}
-                            </pre>
-                          </div>
-                        )}
-                        
                         {endpoint.request.body && (
                           <div>
                             <span className="text-sm font-medium text-gray-700">Body:</span>
@@ -285,21 +251,12 @@ const Docs = () => {
                         Response
                       </h4>
                       <div className="bg-gray-50 p-4 rounded-md">
-                        <div className="mb-4">
+                        <div>
                           <span className="text-sm font-medium text-gray-700">Success ({endpoint.response.success.status}):</span>
                           <pre className="mt-1 text-sm text-gray-900 bg-white p-3 rounded overflow-x-auto">
                             {formatJSON(endpoint.response.success.body)}
                           </pre>
                         </div>
-                        
-                        {endpoint.response.error && (
-                          <div>
-                            <span className="text-sm font-medium text-gray-700">Error ({endpoint.response.error.status}):</span>
-                            <pre className="mt-1 text-sm text-gray-900 bg-white p-3 rounded overflow-x-auto">
-                              {formatJSON(endpoint.response.error.body)}
-                            </pre>
-                          </div>
-                        )}
                       </div>
                     </div>
                   </div>
@@ -319,7 +276,7 @@ const Docs = () => {
                 <h3 className="font-medium text-gray-900 mb-2">Base URL</h3>
                 <div className="bg-gray-50 p-4 rounded-md">
                   <code className="text-sm font-mono text-gray-900">
-                    https://api.yourservice.com/v1
+                    https://signify-api.onrender.com/
                   </code>
                 </div>
               </div>
@@ -338,7 +295,6 @@ const Docs = () => {
             </div>
           </div>
         </div>
-        <br />
       </div>
     </div>
   );
