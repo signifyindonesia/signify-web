@@ -7,7 +7,7 @@ export default function Hero() {
     {
       image: "https://demo-source.imgix.net/canyon.jpg",
       title: "Penerjemah Bahasa Isyarat Terbaik",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis inventore aliquid ab labore facilis eum.",
+      description: "Dapatkan akses ke penerjemah bahasa isyarat terbaik untuk komunikasi yang inklusif dan tanpa batas.",
       ctaPrimary: "Mulai Sekarang",
       ctaSecondary: "Tentang",
       primaryColor: "orange"
@@ -15,7 +15,7 @@ export default function Hero() {
     {
       image: "https://demo-source.imgix.net/mountains.jpg",
       title: "Belajar Bahasa Isyarat dengan Mudah",
-      description: "Temporibus animi qui nostrum neque similique totam repudiandae sunt adipisci necessitatibus beatae.",
+      description: "Pelajari bahasa isyarat dengan metode interaktif dan menyenangkan, kapan pun dan di mana pun.",
       ctaPrimary: "Mulai Sekarang",
       ctaSecondary: "Tentang",
       primaryColor: "orange"
@@ -23,7 +23,7 @@ export default function Hero() {
     {
       image: "https://demo-source.imgix.net/house.jpg",
       title: "Komunitas Tuli yang Inklusif",
-      description: "Quis inventore aliquid ab labore facilis eum, temporibus animi qui nostrum neque similique.",
+      description: "Bergabunglah dengan komunitas yang mendukung dan inklusif, tempat berbagi dan berkembang bersama.",
       ctaPrimary: "Mulai Sekarang",
       ctaSecondary: "Tentang",
       primaryColor: "green"

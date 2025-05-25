@@ -1,12 +1,36 @@
 import { useState } from "react";
 import Hero from "../../components/hero/Hero";
-import { FaCrown } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import {
+  FaCrown,
+  FaRobot,
+  FaWheelchair,
+  FaBolt,
+  FaVideo,
+  FaRegSmileWink,
   FaRegLightbulb,
   FaHandsHelping,
   FaGraduationCap,
   FaMobileAlt,
 } from "react-icons/fa";
+import { MdPower } from "react-icons/md";
+import {
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  LineChart,
+  Line,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 // Diperuntukan untuk section Cara kerja signify
 const steps = [
@@ -34,7 +58,8 @@ const steps = [
     description:
       "Pelajari bahasa isyarat dengan video interaktif, latihan, dan pengenalan karakter.",
     icon: <FaGraduationCap className="w-6 h-6 text-blue-500" />,
-    image: "https://images.unsplash.com/photo-1746730251085-34132b6dcec5?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8",
+    image:
+      "https://images.unsplash.com/photo-1746730251085-34132b6dcec5?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8",
   },
   {
     id: 4,
@@ -42,11 +67,48 @@ const steps = [
     description:
       "Gunakan fitur penerjemah AI untuk mempraktekkan dan menerima umpan balik secara real-time.",
     icon: <FaMobileAlt className="w-6 h-6 text-blue-500" />,
-    image: "https://images.unsplash.com/photo-1746950862687-3017c5818710?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image:
+      "https://images.unsplash.com/photo-1746950862687-3017c5818710?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
 export default function Home() {
+  // Data
+  const populationData = [
+    { tahun: "2018", jumlah: 2.5 },
+    { tahun: "2019", jumlah: 2.7 },
+    { tahun: "2020", jumlah: 2.8 },
+    { tahun: "2021", jumlah: 3.0 },
+    { tahun: "2022", jumlah: 3.2 },
+    { tahun: "2023", jumlah: 3.4 },
+    { tahun: "2024", jumlah: 3.5 },
+  ];
+
+  const ageDistributionData = [
+    { name: "0-14 tahun", value: 15 },
+    { name: "15-24 tahun", value: 22 },
+    { name: "25-44 tahun", value: 38 },
+    { name: "45-64 tahun", value: 18 },
+    { name: "65+ tahun", value: 7 },
+  ];
+
+  const assistiveTechData = [
+    { name: "Alat Bantu Dengar", pengguna: 45 },
+    { name: "Implant Koklea", pengguna: 15 },
+    { name: "Aplikasi Isyarat", pengguna: 65 },
+    { name: "Alat Komunikasi Visual", pengguna: 35 },
+    { name: "Caption", pengguna: 85 },
+  ];
+
+  const accessibilityData = [
+    { sektor: "Pendidikan", tingkat: 45, target: 100 },
+    { sektor: "Kesehatan", tingkat: 38, target: 100 },
+    { sektor: "Pekerjaan", tingkat: 25, target: 100 },
+    { sektor: "Transportasi", tingkat: 30, target: 100 },
+    { sektor: "Digital", tingkat: 50, target: 100 },
+  ];
+
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8"];
   // Variabel untuk dibagian section cara kerja signify
   const [activeStep, setActiveStep] = useState(steps[0]);
   return (
@@ -80,10 +142,20 @@ export default function Home() {
                 <h2 className="text-2xl font-semibold text-black sm:text-3xl">
                   Tentang Kami
                 </h2>
-                <p className="mt-4 text-blue-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Tenetur doloremque saepe architecto maiores repudiandae amet
-                  perferendis repellendus, reprehenderit voluptas sequi.
+                <p className="mt-4 text-black text-justify">
+                  Signify, sebuah aplikasi penerjemah bahasa isyarat berbasis
+                  AI, hadir sebagai solusi inovatif untuk menjembatani
+                  kesenjangan komunikasi antara penyandang tunarungu dan
+                  masyarakat umum. Mengandalkan teknologi kecerdasan buatan
+                  terkini, aplikasi ini memiliki kemampuan untuk menerjemahkan
+                  gerakan bahasa isyarat secara real-time menjadi teks maupun
+                  suara. Dengan target pengguna yang luas, mulai dari individu
+                  penyandang tunarungu, institusi pendidikan dan layanan publik,
+                  hingga lingkungan kerja yang inklusif, Signify diharapkan
+                  dapat memfasilitasi interaksi yang lebih mudah dan efektif.
+                  Proyek ambisius ini merupakan hasil kolaborasi antara tim
+                  Machine Learning dan Frontend-Backend Development dalam
+                  program capstone Coding Camp powered by DBS Foundation 2025.
                 </p>
 
                 {/* Fitur Signify */}
@@ -114,9 +186,11 @@ export default function Home() {
                       <span>API dokumentasi untuk integrasi pihak ketiga</span>
                     </li>
                     <div className="flex justify-center mt-8">
-                      <button className="bg-orange-300 hover:bg-orange-400 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300">
-                        Try Now
-                      </button>
+                      <Link to="/login">
+                        <button className="bg-orange-300 hover:bg-orange-400 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300">
+                          Try Now
+                        </button>
+                      </Link>
                     </div>
                   </ul>
                 </div>
@@ -284,32 +358,32 @@ export default function Home() {
               {
                 title: "Teknologi AI Canggih",
                 desc: "Menggunakan kecerdasan buatan terkini untuk menerjemahkan bahasa isyarat secara real-time.",
-                icon: "🤖",
+                icon: <FaRobot className="text-white" />,
               },
               {
                 title: "Meningkatkan Aksesibilitas",
                 desc: "Membantu pengguna tunarungu memahami konten digital lebih mudah dan mandiri.",
-                icon: "♿",
+                icon: <FaWheelchair className="text-white" />,
               },
               {
                 title: "Integrasi Mudah",
                 desc: "Plugin bisa langsung diintegrasikan ke website, video, dan dokumen PDF tanpa coding rumit.",
-                icon: "🔌",
+                icon: <MdPower className="text-white" />,
               },
               {
                 title: "Waktu Respons Cepat",
                 desc: "Terjemahan berlangsung secara instan ketika pengguna klik konten atau subtitle.",
-                icon: "⚡",
+                icon: <FaBolt className="text-white" />,
               },
               {
                 title: "Multimedia Support",
                 desc: "Bekerja di berbagai format: teks, video, dan PDF untuk pengalaman menyeluruh.",
-                icon: "🎥",
+                icon: <FaVideo className="text-white" />,
               },
               {
                 title: "Ramah Pengguna",
                 desc: "UI/UX yang mudah digunakan bahkan oleh pengguna awam sekalipun.",
-                icon: "👌",
+                icon: <FaRegSmileWink className="text-white" />,
               },
             ].map((item, idx) => (
               <div
@@ -325,6 +399,160 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Banner Section */}
+      <div className="bg-orange-300 shadow-md px-4 md:px-6 py-4 flex justify-center">
+        <h1 className="text-white text-lg font-semibold">
+          Statistik Data Terhadap Teman Tuli
+        </h1>
+      </div>
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              Visualisasi Data Komunitas Tuli
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Data dan statistik inklusif untuk memahami lebih baik tentang
+              komunitas tuli di Indonesia dan tantangan aksesibilitas yang
+              dihadapi.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {/* Grafik Populasi */}
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                Estimasi Populasi Tuli di Indonesia
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Pertumbuhan jumlah populasi tuli dalam jutaan orang (2018-2024)
+              </p>
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={populationData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="tahun" />
+                    <YAxis
+                      label={{
+                        value: "Jutaan",
+                        angle: -90,
+                        position: "insideLeft",
+                      }}
+                    />
+                    <Tooltip />
+                    <Area
+                      type="monotone"
+                      dataKey="jumlah"
+                      stroke="#8884d8"
+                      fill="#8884d8"
+                      fillOpacity={0.3}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            {/* Distribusi Usia */}
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                Distribusi Usia Komunitas Tuli
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Persentase berdasarkan kelompok usia
+              </p>
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={ageDistributionData}
+                      cx="50%"
+                      cy="50%"
+                      labelLine
+                      outerRadius={80}
+                      fill="#8884d8"
+                      dataKey="value"
+                      label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+                    >
+                      {ageDistributionData.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend
+                      layout="vertical"
+                      verticalAlign="middle"
+                      align="right"
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Penggunaan Teknologi Asistif */}
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                Penggunaan Teknologi Asistif
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Persentase penggunaan berbagai alat bantu dan teknologi
+              </p>
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={assistiveTechData} layout="vertical">
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis type="number" domain={[0, 100]} />
+                    <YAxis type="category" dataKey="name" width={100} />
+                    <Tooltip />
+                    <Legend />
+                    <Bar
+                      dataKey="pengguna"
+                      fill="#00C49F"
+                      name="Persentase Pengguna (%)"
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            {/* Tingkat Aksesibilitas */}
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                Tingkat Aksesibilitas di Berbagai Sektor
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Perbandingan kondisi sekarang dan target ideal (dalam %)
+              </p>
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={accessibilityData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="sektor" />
+                    <YAxis domain={[0, 100]} />
+                    <Tooltip />
+                    <Legend />
+                    <Bar
+                      dataKey="tingkat"
+                      fill="#0088FE"
+                      name="Tingkat Saat Ini (%)"
+                    />
+                    <Bar
+                      dataKey="target"
+                      fill="#FFBB28"
+                      name="Target Ideal (%)"
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
           </div>
         </div>
       </section>
