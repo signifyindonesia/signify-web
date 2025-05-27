@@ -41,7 +41,7 @@ const steps = [
       "Buat akun gratis dan mulai perjalanan pembelajaran bahasa isyarat Anda.",
     icon: <FaRegLightbulb className="w-6 h-6 text-blue-500" />,
     image:
-      "https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "/registration.jpg", // Registration/signup form
   },
   {
     id: 2,
@@ -50,7 +50,7 @@ const steps = [
       "Pilih dari berbagai modul pembelajaran yang disesuaikan dengan tingkat kemampuan Anda.",
     icon: <FaHandsHelping className="w-6 h-6 text-blue-500" />,
     image:
-      "https://images.unsplash.com/photo-1746990263194-0e2826fed608?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "/choosemodul.jpg", // Person choosing/selecting modules
   },
   {
     id: 3,
@@ -59,7 +59,7 @@ const steps = [
       "Pelajari bahasa isyarat dengan video interaktif, latihan, dan pengenalan karakter.",
     icon: <FaGraduationCap className="w-6 h-6 text-blue-500" />,
     image:
-      "https://images.unsplash.com/photo-1746730251085-34132b6dcec5?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8",
+      "/study.jpg", // Learning/studying scene
   },
   {
     id: 4,
@@ -68,7 +68,7 @@ const steps = [
       "Gunakan fitur penerjemah AI untuk mempraktekkan dan menerima umpan balik secara real-time.",
     icon: <FaMobileAlt className="w-6 h-6 text-blue-500" />,
     image:
-      "https://images.unsplash.com/photo-1746950862687-3017c5818710?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "/practice.jpg", // Hands practicing sign language
   },
 ];
 
@@ -130,9 +130,9 @@ export default function Home() {
             {/* Image - Added flex and object-cover to make it fill the height */}
             <div className="order-2 md:order-1 flex items-center h-full">
               <img
-                src="https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src="/signify.png"
                 alt="Feature illustration"
-                className="w-full h-full object-cover rounded-xl shadow-md"
+                className="w-full h-full object-fit rounded-xl shadow-md"
               />
             </div>
 
@@ -340,7 +340,7 @@ export default function Home() {
         id="why-signify"
         className="py-24 bg-gradient-to-r from-blue-500 to-blue-200"
       >
-        <div className="max-w-screen-md mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Title */}
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
@@ -352,8 +352,8 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Vertical Card List */}
-          <div className="space-y-8">
+          {/* Card Grid - 3x3 Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 title: "Teknologi AI Canggih",

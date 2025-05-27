@@ -18,7 +18,7 @@ const About = () => {
           </p>
           <br />
           <p>Signify dirancang untuk berbagai pengguna, termasuk:</p>
-          <ul className='list-disc list-inside ml-4'>
+          <ul className="list-disc list-inside ml-4">
             <li>Individu penyandang tunarungu</li>
             <li>Institusi pendidikan dan layanan publik</li>
             <li>Lingkungan kerja inklusif</li>
@@ -33,10 +33,10 @@ const About = () => {
           <p>
             GitHub Repository:{" "}
             <a
-              href='https://github.com/signifyindonesia/'
-              className='underline text-blue-200 hover:text-white'
-              target='_blank'
-              rel='noopener noreferrer'
+              href="https://github.com/signifyindonesia/"
+              className="underline text-blue-500 hover:text-black"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               https://github.com/signifyindonesia/
             </a>
@@ -52,7 +52,7 @@ const About = () => {
             Visi kami adalah menjadi platform penerjemah bahasa isyarat terdepan
             secara global yang:
           </p>
-          <ul className='list-disc list-inside ml-4 mt-2'>
+          <ul className="list-disc list-inside ml-4 mt-2">
             <li>Menghubungkan semua orang tanpa hambatan komunikasi</li>
             <li>
               Mendorong inklusivitas di bidang pendidikan, pekerjaan, dan
@@ -72,7 +72,7 @@ const About = () => {
             Misi kami adalah mengembangkan solusi AI yang efektif dan inklusif
             melalui:
           </p>
-          <ul className='list-disc list-inside ml-4 mt-2'>
+          <ul className="list-disc list-inside ml-4 mt-2">
             <li>Pengembangan teknologi AI yang akurat dan ramah pengguna</li>
             <li>
               Keterlibatan aktif komunitas tunarungu dalam pengujian dan
@@ -94,9 +94,9 @@ const About = () => {
 
   return (
     <>
-      <div className='min-h-screen p-6 sm:p-10 md:p-16 bg-gradient-to-r from-blue-600 to-blue-300 flex flex-col xl:flex-row gap-6'>
+      <div className="min-h-screen p-6 sm:p-10 md:p-16 bg-gradient-to-r from-blue-600 to-blue-300 flex flex-col xl:flex-row gap-6">
         {/* Menu Kiri */}
-        <nav className='bg-white/90 backdrop-blur-md rounded-lg shadow-md w-full xl:w-80 flex flex-col xl:justify-center pt-8 pb-8 px-4 sm:px-6'>
+        <nav className="bg-white/90 backdrop-blur-md rounded-lg shadow-md w-full xl:w-80 flex flex-col xl:justify-center pt-8 pb-8 px-4 sm:px-6">
           {menuItems.map((item, index) => (
             <button
               key={item.label}
@@ -120,11 +120,10 @@ const About = () => {
         </nav>
 
         {/* Konten Kanan */}
-        <section className='flex-1 backdrop-blur-sm bg-white/10 text-white px-4 sm:px-6 py-6 rounded-lg overflow-auto max-h-[75vh] leading-relaxed text-base sm:text-lg'>
+        <section className="flex-1 bg-white/90 backdrop-blur-md text-gray-800 px-4 sm:px-6 py-6 rounded-lg overflow-auto  leading-relaxed text-base sm:text-lg shadow-md border border-gray-200">
           {menuItems.find((item) => item.label === activeMenu).content}
         </section>
       </div>
-      <div className="bg-white mt-20"></div>
     </>
   );
 };
