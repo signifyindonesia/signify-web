@@ -1,13 +1,59 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 import Button from "../../components/ui/button/Button";
+import { registerUser } from "../../services/authService";
+import { setUser } from "../../utils/auth";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await registerUser(form);
+      const { token, user } = response.data.data;
+
+      setUser(user, token);
+
+      await Swal.fire({
+        icon: "success",
+        title: "Registrasi Berhasil!",
+        text: `Selamat datang, ${user.name || "Pengguna"}!`,
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      navigate("/"); // redirect ke halaman utama
+    } catch (error) {
+      const msg = error.response?.data?.message || "Registrasi gagal!";
+      Swal.fire({
+        icon: "error",
+        title: "Registrasi Gagal",
+        text: msg,
+      });
+    }
+  };
+
   return (
     <main className='flex flex-col items-center justify-center min-h-screen px-4 py-10 bg-gray-50'>
       <div className='w-full max-w-md p-8 bg-[var(--color-secondary)] rounded-xl shadow-md'>
         <h2 className='text-2xl font-bold mb-6 text-center'>
           Daftar akun Signify
         </h2>
-        <form className='space-y-4'>
+
+        <form onSubmit={handleSubmit} className='space-y-4'>
           <div>
             <label
               htmlFor='name'
@@ -19,7 +65,10 @@ const Register = () => {
               id='name'
               type='text'
               placeholder='Nama Lengkap'
+              value={form.name}
+              onChange={handleChange}
               className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+              required
             />
           </div>
 
@@ -34,7 +83,10 @@ const Register = () => {
               id='email'
               type='email'
               placeholder='Alamat email'
+              value={form.email}
+              onChange={handleChange}
               className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+              required
             />
           </div>
 
@@ -49,7 +101,10 @@ const Register = () => {
               id='password'
               type='password'
               placeholder='Masukkan password baru'
+              value={form.password}
+              onChange={handleChange}
               className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+              required
             />
           </div>
 
@@ -77,7 +132,6 @@ const Register = () => {
           </Button>
         </form>
 
-        {/* Garis OR */}
         <div className='flex items-center my-6'>
           <div className='flex-grow h-px bg-gray-400'></div>
           <span className='px-4 text-sm text-[var(--color-text)]-500'>
@@ -86,7 +140,6 @@ const Register = () => {
           <div className='flex-grow h-px bg-gray-400'></div>
         </div>
 
-        {/* Tombol Masuk dengan Google */}
         <Button
           variant='outline'
           color='gray'
@@ -96,7 +149,6 @@ const Register = () => {
           Register with Google
         </Button>
 
-        {/* Tautan Login */}
         <div className='mt-6 text-center'>
           <Button as='a' href='/login' variant='link'>
             Sudah punya akun? Login
