@@ -9,6 +9,7 @@ import Translation from "../pages/translation/Translation";
 import Academy from "../pages/academy/Academy";
 import Profile from "../pages/profile/Profile";
 import Update from "../pages/update/Update";
+import ChangePassword from "../pages/changePassword/ChangePassword";
 
 export default function AppRoutes() {
   return (
@@ -23,6 +24,7 @@ export default function AppRoutes() {
       <Route path='/academy' element={<Academy />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/update' element={<Update />} />
+      <Route path='/changePassword' element={<ChangePassword />} />
     </Routes>
   );
 }
