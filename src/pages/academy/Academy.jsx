@@ -349,7 +349,7 @@ export default function Academy() {
                     setIsQuizMode(true);
                     handleStartQuiz(); // Start quiz immediately
                   }}
-                  className="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-bold py-3 px-8 rounded-xl text-lg transition-all transform hover:scale-105 shadow-lg inline-flex items-center"
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-purple-600 hover:to-indigo-700 text-white font-bold py-3 px-8 rounded-xl text-lg transition-all transform hover:scale-105 shadow-lg inline-flex items-center"
                 >
                   <FaQuestionCircle className="mr-2" />
                   Mulai Kuis Alfabet
@@ -359,7 +359,7 @@ export default function Academy() {
           ) : (
             // --- Quiz UI ---
             <div className="w-full max-w-2xl mx-auto">
-              <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/20">
+              <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/20">
                 {!quizActive &&
                   !quizEnded && ( // Should not happen if handleStartQuiz is called with setIsQuizMode
                     <div className="text-center">
