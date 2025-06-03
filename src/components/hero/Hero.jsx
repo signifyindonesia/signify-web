@@ -5,7 +5,7 @@ export default function Hero() {
   
   const slides = [
     {
-      image: "https://demo-source.imgix.net/canyon.jpg",
+      image: "/sign-language.jpg",
       title: "Penerjemah Bahasa Isyarat Terbaik",
       description: "Dapatkan akses ke penerjemah bahasa isyarat terbaik untuk komunikasi yang inklusif dan tanpa batas.",
       ctaPrimary: "Mulai Sekarang",
@@ -13,7 +13,7 @@ export default function Hero() {
       primaryColor: "orange"
     },
     {
-      image: "https://demo-source.imgix.net/mountains.jpg",
+      image: "/study-sign.jpg",
       title: "Belajar Bahasa Isyarat dengan Mudah",
       description: "Pelajari bahasa isyarat dengan metode interaktif dan menyenangkan, kapan pun dan di mana pun.",
       ctaPrimary: "Mulai Sekarang",
@@ -21,7 +21,7 @@ export default function Hero() {
       primaryColor: "orange"
     },
     {
-      image: "https://demo-source.imgix.net/house.jpg",
+      image: "/komunitas-isyarat.jpg",
       title: "Komunitas Tuli yang Inklusif",
       description: "Bergabunglah dengan komunitas yang mendukung dan inklusif, tempat berbagi dan berkembang bersama.",
       ctaPrimary: "Mulai Sekarang",

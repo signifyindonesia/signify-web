@@ -64,6 +64,14 @@ export default function Navbar() {
     });
   };
 
+  const navLinks = [
+    { path: "/", label: "Beranda" },
+    { path: "/about", label: "Tentang" },
+    { path: "/academy", label: "Akademi", protected: true },
+    { path: "/translation", label: "Penerjemah", protected: true },
+    { path: "/docs", label: "Dokumentasi API" },
+  ];
+
   return (
     <nav className='bg-gradient-to-r from-blue-500 to-blue-300 shadow-md px-4 md:px-6 py-4'>
       <div className='flex items-center justify-between'>
@@ -137,26 +145,30 @@ export default function Navbar() {
 
         <div className='hidden lg:flex items-center gap-x-6'>
           <ul className='flex space-x-4'>
-            {["/", "/about", "/academy", "/translation", "/docs"].map(
-              (path, idx) => (
-                <li key={idx}>
-                  <Link
-                    to={path}
-                    className='text-white hover:text-blue-900 font-medium transition'
-                  >
-                    {
-                      [
-                        "Beranda",
-                        "Tentang",
-                        "Akademi",
-                        "Penerjemah",
-                        "Dokumentasi API",
-                      ][idx]
+            {navLinks.map(({ path, label, protected: isProtected }, idx) => (
+              <li key={idx}>
+                <Link
+                  to={user || !isProtected ? path : "/login"}
+                  onClick={(e) => {
+                    if (isProtected && !user) {
+                      e.preventDefault();
+                      Swal.fire({
+                        icon: "warning",
+                        title: "Login Diperlukan",
+                        text: `Silakan login terlebih dahulu untuk mengakses ${label}.`,
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "OK",
+                      }).then(() => {
+                        window.location.href = "/login";
+                      });
                     }
-                  </Link>
-                </li>
-              )
-            )}
+                  }}
+                  className='text-white hover:text-blue-900 font-medium transition'
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
 
           {user ? (
@@ -222,27 +234,32 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className='lg:hidden mt-4'>
           <ul className='flex flex-col space-y-2'>
-            {["/", "/about", "/academy", "/translation", "/docs"].map(
-              (path, idx) => (
-                <li key={idx}>
-                  <Link
-                    to={path}
-                    onClick={() => setIsMenuOpen(false)}
-                    className='block text-white py-2 px-2 hover:underline'
-                  >
-                    {
-                      [
-                        "Beranda",
-                        "Tentang",
-                        "Akademi",
-                        "Penerjemah",
-                        "Dokumentasi API",
-                      ][idx]
+            {navLinks.map(({ path, label, protected: isProtected }, idx) => (
+              <li key={idx}>
+                <Link
+                  to={user || !isProtected ? path : "/login"}
+                  onClick={(e) => {
+                    if (isProtected && !user) {
+                      e.preventDefault();
+                      Swal.fire({
+                        icon: "warning",
+                        title: "Login Diperlukan",
+                        text: `Silakan login terlebih dahulu untuk mengakses ${label}.`,
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "OK",
+                      }).then(() => {
+                        window.location.href = "/login";
+                      });
+                    } else {
+                      setIsMenuOpen(false);
                     }
-                  </Link>
-                </li>
-              )
-            )}
+                  }}
+                  className='block text-white py-2 px-2 hover:underline'
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
           {!user && (
             <div className='flex flex-col gap-2 mt-4'>
