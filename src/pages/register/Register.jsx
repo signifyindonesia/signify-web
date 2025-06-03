@@ -39,7 +39,7 @@ const handleSubmit = async (e) => {
         showConfirmButton: false,
       });
 
-      navigate("/");
+      navigate("/login");
     } else {
       // Jika sukses tapi tidak ada token (sesuai backend lama)
       await Swal.fire({
