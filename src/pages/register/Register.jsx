@@ -18,13 +18,17 @@ const Register = () => {
     setForm({ ...form, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const response = await registerUser(form);
-      const { token, user } = response.data.data;
+  try {
+    const { data } = await registerUser(form);
+    
+    // Debugging - lihat response lengkap
+    console.log('Registration response:', data);
 
+    if (data.data && data.data.token) {
+      const { token, user } = data.data;
       setUser(user, token);
 
       await Swal.fire({
@@ -35,16 +39,30 @@ const Register = () => {
         showConfirmButton: false,
       });
 
-      navigate("/"); // redirect ke halaman utama
-    } catch (error) {
-      const msg = error.response?.data?.message || "Registrasi gagal!";
-      Swal.fire({
-        icon: "error",
-        title: "Registrasi Gagal",
-        text: msg,
+      navigate("/");
+    } else {
+      // Jika sukses tapi tidak ada token (sesuai backend lama)
+      await Swal.fire({
+        icon: "success",
+        title: data.message || "Registrasi Berhasil!",
+        text: "Silakan login dengan akun Anda",
+        timer: 1500,
+        showConfirmButton: false,
       });
+      navigate("/login");
     }
-  };
+  } catch (error) {
+    console.error('Registration error:', error);
+    const msg = error.response?.data?.message || 
+                error.message || 
+                "Registrasi gagal!";
+    Swal.fire({
+      icon: "error",
+      title: "Registrasi Gagal",
+      text: msg,
+    });
+  }
+};
 
   return (
     <main className='flex flex-col items-center justify-center min-h-screen px-4 py-10 bg-gray-50'>
