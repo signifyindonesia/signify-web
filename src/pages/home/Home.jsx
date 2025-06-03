@@ -274,21 +274,21 @@ export default function Home() {
           {/* Solutions */}
           {[
             {
-              title: "Web Sign Language Plugin",
-              desc: "It makes the sentences on the websites clickable, and with the support of artificial intelligence, the clicked sentences are instantly translated into sign language.",
-              img: "https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop",
+              title: "Upload Image",
+              desc: "Pengguna dapat mengunggah gambar yang berisi isyarat tangan, kemudian sistem secara otomatis menganalisis konten visual tersebut dan menerjemahkannya ke dalam bahasa isyarat.",
+              img: "/upload-img.jpg",
               reverse: false,
             },
             {
-              title: "Video Sign Language Plugin",
-              desc: "With the support of artificial intelligence it translates videos with subtitles into sign language synchronously.",
-              img: "https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop",
+              title: "Kamera Langsung (Live Camera)",
+              desc: "Melalui integrasi kamera secara langsung, pengguna dapat merekam atau menunjukkan isyarat secara real-time dan mendapatkan terjemahan langsung ke dalam teks.",
+              img: "/live-cam.jpg",
               reverse: true,
             },
             {
-              title: "PDF Sign Language Plugin",
-              desc: "Sentences in contracts, documents, forms etc. in PDF format become clickable and instantly translated into sign language with the support of artificial intelligence.",
-              img: "https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop",
+              title: "Video Realtime",
+              desc: "Fitur ini memungkinkan pemrosesan video secara real-time dengan dukungan subtitle untuk diterjemahkan secara langsung ke dalam bahasa isyarat",
+              img: "/video-realtime.jpg",
               reverse: false,
             },
           ].map((item, idx) => (
@@ -367,17 +367,17 @@ export default function Home() {
               },
               {
                 title: "Integrasi Mudah",
-                desc: "Plugin bisa langsung diintegrasikan ke website, video, dan dokumen PDF tanpa coding rumit.",
+                desc: "Plugin bisa langsung diintegrasikan ke website dan video tanpa coding rumit.",
                 icon: <MdPower className="text-white" />,
               },
               {
                 title: "Waktu Respons Cepat",
-                desc: "Terjemahan berlangsung secara instan ketika pengguna klik konten atau subtitle.",
+                desc: "Terjemahan berlangsung secara instan ketika pengguna klik konten.",
                 icon: <FaBolt className="text-white" />,
               },
               {
                 title: "Multimedia Support",
-                desc: "Bekerja di berbagai format: teks, video, dan PDF untuk pengalaman menyeluruh.",
+                desc: "Bekerja di berbagai format: teks, gambar, dan realtime video untuk pengalaman menyeluruh.",
                 icon: <FaVideo className="text-white" />,
               },
               {
