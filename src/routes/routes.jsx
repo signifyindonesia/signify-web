@@ -1,4 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+// src/routes/routes.js
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import PageWrapper from "../components/pagewrapper/Pagewrapper";
+
 import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
@@ -12,19 +16,21 @@ import Update from "../pages/update/Update";
 import ChangePassword from "../pages/changePassword/ChangePassword";
 
 export default function AppRoutes() {
+  const location = useLocation();
+
   return (
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/about' element={<About />} />
-      <Route path='/translation' element={<Translation />} />
-      <Route path='/docs' element={<Docs />} />
-      <Route path='*' element={<NotFound />} />
-      <Route path='/academy' element={<Academy />} />
-      <Route path='/profile' element={<Profile />} />
-      <Route path='/update' element={<Update />} />
-      <Route path='/changePassword' element={<ChangePassword />} />
-    </Routes>
+      <Routes location={location} key={location.pathname}>
+        <Route path='/' element={<PageWrapper><Home /></PageWrapper>} />
+        <Route path='/login' element={<PageWrapper><Login /></PageWrapper>} />
+        <Route path='/register' element={<PageWrapper><Register /></PageWrapper>} />
+        <Route path='/about' element={<PageWrapper><About /></PageWrapper>} />
+        <Route path='/translation' element={<PageWrapper><Translation /></PageWrapper>} />
+        <Route path='/docs' element={<PageWrapper><Docs /></PageWrapper>} />
+        <Route path='/academy' element={<PageWrapper><Academy /></PageWrapper>} />
+        <Route path='/profile' element={<PageWrapper><Profile /></PageWrapper>} />
+        <Route path='/update' element={<PageWrapper><Update /></PageWrapper>} />
+        <Route path='/changePassword' element={<PageWrapper><ChangePassword /></PageWrapper>} />
+        <Route path='*' element={<PageWrapper><NotFound /></PageWrapper>} />
+      </Routes>
   );
 }
