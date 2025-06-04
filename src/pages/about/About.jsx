@@ -11,17 +11,17 @@ const TeamMemberDisplay = () => {
         {
           name: "Yudha Rizky Alvingky",
           cohortId: "FC156D5Y1387",
-          avatar: "/logo-sttnf.jpg"
+          avatar: "/logo-sttnf.jpg" // Pastikan path ini benar relatif terhadap folder public
         },
         {
           name: "Rizky Hilmiawan Anggoro",
           cohortId: "FC156D5Y1771",
-          avatar: "/logo-sttnf.jpg"
+          avatar: "/logo-sttnf.jpg" // Pastikan path ini benar
         },
         {
           name: "Wisnu Nugroho",
           cohortId: "FC156D5Y1388",
-          avatar: "/logo-sttnf.jpg"
+          avatar: "/logo-sttnf.jpg" // Pastikan path ini benar
         }
       ]
     },
@@ -32,21 +32,24 @@ const TeamMemberDisplay = () => {
         {
           name: "Bagas Cahyawiguna",
           cohortId: "MC246D5Y2090",
-          avatar: "/logo-uniku.png"
+          avatar: "/logo-uniku.png" // Pastikan path ini benar
         },
         {
           name: "Alfanah Muhson Husain Nugroho",
           cohortId: "MC012D5Y2096",
-          avatar: "/logo-telkom.png"
+          avatar: "/logo-telkom.png" // Pastikan path ini benar
         },
         {
-          name: "Muhamad Fahmi	",
+          name: "Muhamad Fahmi", // Menghapus spasi ekstra
           cohortId: "MC246D5Y2423",
-          avatar: "/logo-uniku.png"
+          avatar: "/logo-uniku.png" // Pastikan path ini benar
         }
       ]
     },
   ];
+
+  // URL Placeholder generik untuk fallback avatar
+  const fallbackAvatarUrl = "https://placehold.co/100x100/E0E0E0/BDBDBD?text=N/A";
 
   return (
     <div className="space-y-6">
@@ -67,9 +70,12 @@ const TeamMemberDisplay = () => {
                   <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0 border-2 border-blue-200">
                     <img
                       src={member.avatar}
-                      alt={member.name}
+                      alt={`Avatar ${member.name}`}
                       className="w-full h-full object-cover"
-                      onError={(e) => { e.target.onerror = null; e.target.src=member.fallbackAvatar }}
+                      onError={(e) => { 
+                        e.target.onerror = null; // Mencegah loop error jika fallback juga gagal
+                        e.target.src = fallbackAvatarUrl; 
+                      }}
                     />
                   </div>
                   
@@ -80,15 +86,16 @@ const TeamMemberDisplay = () => {
                     <p className="text-xs sm:text-sm text-gray-500">
                       ID Cohort: {member.cohortId}
                     </p>
-                    <div className="flex items-center mt-1">
-                    </div>
+                    {/* Div kosong ini bisa dihapus jika tidak ada konten di dalamnya */}
+                    {/* <div className="flex items-center mt-1"></div> */}
                   </div>
                 </div>
               ))}
             </div>
           ) : (
+            // Jika ada section.content yang bukan array members
             <div className="text-sm sm:text-base">
-              {section.content}
+              {section.content} 
             </div>
           )}
         </div>
@@ -145,6 +152,7 @@ const About = () => {
       label: "Visi",
       content: (
         <>
+         <h1 className="text-2xl sm:text-3xl font-bold text-blue-500 mb-4">Visi Kami</h1>
           <p className="mb-3">
             Visi kami adalah menjadi platform penerjemah bahasa isyarat terdepan
             secara global yang:
@@ -166,6 +174,7 @@ const About = () => {
       label: "Misi",
       content: (
         <>
+          <h1 className="text-2xl sm:text-3xl font-bold text-blue-500 mb-4">Misi Kami</h1>
           <p className="mb-3">
             Misi kami adalah mengembangkan solusi AI yang efektif dan inklusif
             melalui:
@@ -190,7 +199,7 @@ const About = () => {
     },
     {
       label: "Pengembang Aplikasi",
-      content: <TeamMemberDisplay />,
+      content: <TeamMemberDisplay />, // Komponen TeamMemberDisplay dirender di sini
     },
   ];
 
@@ -210,7 +219,6 @@ const About = () => {
               }`}
             >
               <span className="text-sm sm:text-base">{item.label}</span>
-              {/* Mengganti FaAngleRight dengan ChevronRight */}
               <ChevronRight
                 className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 ${
                   activeMenu === item.label ? "rotate-90 text-white" : "text-blue-400"
@@ -222,12 +230,23 @@ const About = () => {
         </nav>
 
         <section className="flex-1 bg-white/95 backdrop-blur-lg text-gray-800 p-4 sm:p-6 md:p-8 rounded-xl shadow-xl overflow-y-auto leading-relaxed text-sm sm:text-base">
+          {/* Menggunakan `key={activeMenu}` di sini membantu React untuk me-mount ulang atau
+              mengupdate komponen konten ketika menu berubah, yang bisa berguna untuk animasi transisi konten jika Anda menambahkannya nanti.
+              Kelas `animate-fadeIn` membutuhkan definisi CSS.
+          */}
           <div key={activeMenu} className="animate-fadeIn">
             {menuItems.find((item) => item.label === activeMenu)?.content}
           </div>
         </section>
       </div>
-      <style jsx global>{`
+      {/* CATATAN TENTANG ANIMASI 'animate-fadeIn':
+        Kelas 'animate-fadeIn' membutuhkan definisi CSS. Jika Anda tidak menggunakan Next.js,
+        blok <style jsx global> tidak akan berfungsi.
+        Anda perlu mendefinisikan animasi ini di file CSS global Anda (misalnya, index.css atau App.css)
+        atau melalui konfigurasi Tailwind CSS.
+
+        Contoh CSS untuk ditambahkan ke file CSS global Anda:
+        
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
@@ -235,7 +254,27 @@ const About = () => {
         .animate-fadeIn {
           animation: fadeIn 0.5s ease-out;
         }
-      `}</style>
+
+        Atau, jika menggunakan Tailwind JIT/PostCSS, Anda bisa menambahkannya ke tailwind.config.js:
+        // tailwind.config.js
+        module.exports = {
+          // ...
+          theme: {
+            extend: {
+              keyframes: {
+                fadeIn: {
+                  '0%': { opacity: '0', transform: 'translateY(10px)' },
+                  '100%': { opacity: '1', transform: 'translateY(0)' },
+                }
+              },
+              animation: {
+                fadeIn: 'fadeIn 0.5s ease-out',
+              }
+            }
+          },
+          // ...
+        }
+      */}
     </>
   );
 };
