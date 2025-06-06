@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     eslint({
-      fix: true, // Auto-perbaiki jika bisa
+      fix: true,
       include: ["src/**/*.js", "src/**/*.jsx"],
       exclude: ["node_modules"],
     }),
@@ -37,6 +37,12 @@ export default defineConfig({
       workbox: {
         // konfigurasi caching bisa disesuaikan jika perlu
       },
+      // Hapus blok 'server' dari sini
     }),
   ],
+  server: {
+    headers: {
+      "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
+    },
+  },
 });
