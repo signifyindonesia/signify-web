@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
 import Button from "../../components/ui/button/Button";
-import { loginUser } from "../../services/authService";
-import { setUser } from "../../utils/auth";
 
+import { loginUser, loginWithGoogle } from "../../services/authService";
+import { setUser } from "../../utils/auth";
 import { useAuth } from "../../contexts/AuthContext";
 
+// Firebase untuk Google Sign-in
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../config/firebase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -35,7 +37,7 @@ const Login = () => {
         showConfirmButton: false,
       });
 
-      navigate("/"); // redirect setelah login
+      navigate("/");
     } catch (err) {
       const msg =
         err.response?.data?.message || "Gagal login. Coba lagi nanti.";
@@ -46,7 +48,46 @@ const Login = () => {
         text: msg,
       });
 
-      setError(msg); // opsional kalau mau tetap munculkan di bawah input
+      setError(msg);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const idToken = await result.user.getIdToken();
+
+      const response = await loginWithGoogle({ token: idToken });
+      const { token, user } = response.data.data;
+
+      setUser(user, token);
+      login();
+
+      await Swal.fire({
+        icon: "success",
+        title: "Login Google Berhasil!",
+        text: `Halo, ${user.name || "Pengguna"}!`,
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      navigate("/");
+    } catch (err) {
+      if (err.code === "auth/popup-closed-by-user") {
+        console.log("Popup login Google ditutup oleh user.");
+        return; // Jangan tampilkan alert
+      }
+
+      console.error("Google login error", err);
+      Swal.fire({
+        icon: "error",
+        title: "Login Google Gagal",
+        text:
+          err.response?.data?.message ||
+          "Gagal login dengan Google. Coba lagi nanti.",
+      });
     }
   };
 
@@ -117,6 +158,7 @@ const Login = () => {
           type='button'
           variant='outline'
           color='gray'
+          onClick={handleGoogleLogin}
           className='w-full flex items-center justify-center gap-2'
         >
           <img src='icons/google.svg' alt='Google' className='w-5 h-5' />

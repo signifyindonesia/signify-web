@@ -9,6 +9,10 @@ export const loginUser = async (payload) => {
   return await api.post("/login", payload);
 };
 
+export const loginWithGoogle = async (payload) => {
+  return await api.post("/google", payload);
+};
+
 // PROFILE
 export const fetchProfile = async () => {
   return await api.get("/profile");
